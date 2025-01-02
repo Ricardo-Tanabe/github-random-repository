@@ -1,0 +1,15 @@
+{
+  "name": "18-github-random-repository",
+  "version": "1.0.0",
+  "description": "O objetivo do projeto é introduzir sobre APIs externas, lidar com requisições assíncronas e gerenciar diferentes estados da interface do usuário com JavaScript.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^21.0.2"
+  }
+}
