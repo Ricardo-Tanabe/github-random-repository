@@ -1,3 +1,9 @@
+:root {
+    --default-width: 250px;
+    --arrow-direction: black transparent transparent;
+    --position-value: 40%;
+}
+
 .main-container {
     display: flex;
     flex-direction: column;
@@ -14,7 +20,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 195px;
+    width: var(--default-width);
     margin: 10px;
 }
 
@@ -33,21 +39,45 @@
 .selector-container {
     border: 2px solid black;
     border-radius: 7px;
-    width: 195px;
+    width: var(--default-width);
     margin: 10px;
     padding: 5px 0;
 }
 
-/* .show-items {
-    background-color: black;
+.show-items {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    list-style: none;
+    border: 1px solid black;
     border-radius: 10px;
-    width: 200px;
-    height: 100px;
-} */
+    background-color: white;
+    width: var(--default-width);
+    top: 120px;
+    margin: 0;
+    padding: 0;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.show-items > li {
+    font-size: 14px;
+    padding: 3px 5px;
+}
+
+.show-items > li:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+.show-items > li:hover {
+    text-decoration: underline blue;
+    color: blue;
+    cursor: pointer;
+}
 
 #select-items {
     position: relative;
-    width: 190px;
+    width: calc(var(--default-width) - 5px);
     height: auto;
     margin: 0;
     padding: 0 5px;
@@ -62,36 +92,66 @@
     content: '';
     border-width: 5px;
     border-style: solid;
-    border-color: black transparent transparent;
-    top: 50%;
+    border-color: var(--arrow-direction);
+    top: var(--position-value);
     right: 5px;
-    transform: translateY(-50%);
+    transform: translateY(- var(--position-value));
 }
 
 .random-repository-container {
+    display: flex;
+    flex-direction: column;
     background-color: rgb(230, 230, 230);
     border-radius: 10px;
-    width: 200px;
-    height: 100px;
+    width: calc(var(--default-width) + 5px);
+    height: 175px;
+}
+
+.random-repository-container > h3 {
+    width: 90%;
+    margin: auto;
+    text-align: left;
+    font-weight: none;
+}
+
+.random-repository-container > p {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    overflow-y: auto;
+}
+
+#insert-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+}
+
+#insert-items > span {
+    font-size: 10px;
+    text-align: left;
 }
 
 .button-container {
-    /* border: 2px solid black; */
-    border: none;
+    display: none;
+    border: 2px solid black;
     border-radius: 7px;
-    width: 195px;
+    width: var(--default-width);
+    background-color: black;
     margin: 10px 0 30px;
     padding: 4px 0;
 }
 
 #submit-button {
-    position: relative;
-    width: 190px;
+    width: calc(var(--default-width) - 5px);
     height: auto;
     margin: 0;
     padding: 0 5px;
     border: none;
     outline: none;
+    color: white;
     background-color: transparent;
     text-align: center;
 }

@@ -6,7 +6,7 @@
     <meta name="keywords" content="API Externas, GitHub Random Repository, Projeto" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    <script src="dist/main.js" defer></script>
     <title>GitHub Random Repository</title>
 </head>
 <body>
@@ -17,10 +17,20 @@
         <div class="selector-container">
             <button id="select-items">Select language</button>
         </div>
-        <div class="show-items"></div>
-        <div class="random-repository-container"></div>
+        <ul class="show-items">
+        </ul>
+        <div class="random-repository-container">
+            <h3></h3>
+            <p>Please select a language</p>
+            <p id="insert-items">
+                <span id="language"></span> 
+                <span id="star"></span> 
+                <span id="forks"></span> 
+                <span id="issues"></span>
+            </p>
+        </div>
         <div class="button-container">
-            <button id="submit-button"></button>
+            <button id="submit-button">Refresh</button>
         </div>
     </div>
 </body>
