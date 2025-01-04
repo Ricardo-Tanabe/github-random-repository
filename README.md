@@ -1,5 +1,6 @@
 # github-random-repository
 O objetivo do projeto é introduzir sobre APIs externas, lidar com requisições assíncronas e gerenciar diferentes estados da interface do usuário com JavaScript.
+Assim, foi criado o buscador de repositórios aleatórios do GitHub.
 
 Link para o [Projeto GitHub Random Repository](https://roadmap.sh/projects/github-random-repo)
 
@@ -14,9 +15,9 @@ Link para o [Projeto GitHub Random Repository](https://roadmap.sh/projects/githu
     - Requisições assíncronas
     - Gerenciar diferentes estados da interface do usuário
 - NPM
-    - Octokit
-    - Webpack
-    - Webpack-CLI
+    - [Octokit](https://www.npmjs.com/package/octokit)
+    - [Webpack](https://www.npmjs.com/package/webpack)
+    - [Webpack-CLI](https://www.npmjs.com/package/webpack-cli)
 - [VS Code Studio](https://code.visualstudio.com/)
     - Extensão: Live Server
 
@@ -25,7 +26,7 @@ O comando abaixo é relacionado ao webpack-cli. Ele executará a ferramenta webp
 ```bash
 ./node_modules/.bin/webpack ./script.js --mode=development
 ```
-O arquivo webpack.config.js, localizado neste repositório, elimina a necessidade de escrever o comando inteiro, ficando na seguinte forma:
+O arquivo webpack.config.js, localizado neste repositório, elimina a necessidade de escrever o comando inteiro. Dessa forma, o comando se torna:
 ```bash
 ./node_modules/.bin/webpack
 ```

@@ -27,8 +27,7 @@ async function getRandomRepo(language) {
             description,
             stargazers_count,
             forks_count,
-            open_issues_count,
-            html_url
+            open_issues_count
         } = randomRepo;
         resultRandomContainer(
             name,
@@ -40,7 +39,6 @@ async function getRandomRepo(language) {
         );
     } catch (error) {
         errorRandomContainer();
-        // throw new Error("Erro ao buscar a lista de linguagens:", error);
     }
         
 }
@@ -68,40 +66,60 @@ function createSelectionList(languages) {
     }
 }
 
+function setrootStyle(config) {
+    rootVar.setProperty(config.direction.property, config.direction.value);
+    rootVar.setProperty(config.position.property, config.position.value);
+}
+
 function adjusteDropDownStyle() {
-    dropDown.style.display = dropDown.style.display === 'flex' ? 'none' : 'flex';
-    if(rootVar.getPropertyValue('--position-value') === '0%') {
-        rootVar.setProperty('--arrow-direction', 'black transparent transparent');
-        rootVar.setProperty('--position-value', '40%');
-    } else {
-        rootVar.setProperty('--arrow-direction', 'transparent transparent black');
-        rootVar.setProperty('--position-value', '0%');
+    const dropVerification = dropDown.style.display === 'flex'
+    const rootVerification = rootVar.getPropertyValue('--position-value') === '0%'
+    const config = {
+        direction: {property: '--arrow-direction', value: 'transparent transparent black'},
+        position: {property: '--position-value', value: '0%'}
     }
+    dropDown.style.display = dropVerification ? 'none' : 'flex';
+    if(rootVerification) {
+        config.direction = {property: '--arrow-direction', value: 'black transparent transparent'};
+        config.position = {property: '--position-value', value: '40%'};
+    }
+    setrootStyle(config);
+}
+
+function setRandomAndButtonContainer(styleConfig) {
+    randomContainer.style.background = styleConfig.color.personal;
+    randomContainer.style.border = styleConfig.shape.border;
+    buttonRepeat.style.display = styleConfig.shape.display;
+    buttonRepeat.style.background = styleConfig.color.general;
+    buttonRepeat.style.borderColor = styleConfig.color.general;
+    innerText.style.textAlign = styleConfig.align.text;
+    innerTitle.style.margin = styleConfig.align.marginTitle;
+    innerText.style.margin = styleConfig.align.marginText;
+    innerRepo.style.margin = styleConfig.align.marginRepo;
 }
 
 function errorRandomContainer() {
-    randomContainer.style.background = 'rgb(255, 180, 180)';
-    randomContainer.style.border = 'none'
-    buttonRepeat.style.display = 'block';
-    buttonRepeat.style.background = 'red';
-    buttonRepeat.style.borderColor = 'red';
-    buttonRepeat.firstChild.innerHTML = ''
-    innerText.style.textAlign = 'center' ;
-    innerTitle.style.margin = innerText.style.margin = innerRepo.style.margin = 'auto';
+    const styleConfig = {
+        color: {personal: '#ffb4b4', general: 'red'},
+        shape: {border: 'none', display: 'block'},
+        align: {text: 'center', marginTitle: 'auto', marginText: 'auto', marginRepo: 'auto'}
+    };
+    setRandomAndButtonContainer(styleConfig);
     innerTitle.innerHTML = ''
     innerText.innerHTML = 'Error fetching repositories';
     for (let i = 0; i < innerRepoInfo.length; i++) {
         innerRepoInfo[i].innerHTML = '';
     }
+    buttonRepeat.firstChild.innerHTML = 'Click to retry'
 }
 
 function loadRandomContainer() {
-    randomContainer.style.background = 'rgb(230, 230, 230)';
-    randomContainer.style.border = 'none';
-    buttonRepeat.style.background = 'black';
-    buttonRepeat.style.borderColor = 'black';
-    innerText.style.textAlign = 'center' ;
-    innerTitle.style.margin = innerText.style.margin = innerRepo.style.margin = 'auto';
+    const styleConfig = {
+        color: {personal: '#e6e6e6', general: 'black'},
+        shape: {border: 'none', display: 'none'},
+        align: {text: 'center', marginTitle: 'auto', marginText: 'auto', marginRepo: 'auto'}
+    };
+    setRandomAndButtonContainer(styleConfig);
     innerTitle.innerHTML = ''
     innerText.innerHTML = 'Loading, please wait...';
     for (let i = 0; i < innerRepoInfo.length; i++) {
@@ -112,21 +130,18 @@ function loadRandomContainer() {
 function resultRandomContainer(name, description, language, stargazers_count, forks_count, open_issues_count) {
     const spanContent = [language, stargazers_count, forks_count, open_issues_count]
     const simbol = ['&#9899;', '&#9734;', '&#9872;', '&#9432;']
-    
-    randomContainer.style.background = 'white';
-    randomContainer.style.border = '2px solid black';
-    buttonRepeat.style.display = 'block';
-    buttonRepeat.style.background = 'black';
-    buttonRepeat.style.borderColor = 'black';
-    innerText.style.textAlign = 'justify';
-    innerTitle.style.margin = '10px auto 5px'
-    innerText.style.margin = '0 auto';
-    innerRepo.style.margin = 'auto auto 10px';
+    const styleConfig = {
+        color: {personal: 'white', general: 'black'},
+        shape: {border: '2px solid black', display: 'block'},
+        align: {text: 'justify', marginTitle: '10px auto 5px', marginText: '0 auto 5px', marginRepo: 'auto auto 10px'}
+    };
+    setRandomAndButtonContainer(styleConfig);
     innerTitle.innerHTML = name
     innerText.innerHTML = description;
     for (let i = 0; i < spanContent.length; i++) {
         innerRepoInfo[i].innerHTML = `${simbol[i]} ${spanContent[i]}`;
     }
+    buttonRepeat.firstChild.innerHTML = 'Refresh'
 }
 
 document.addEventListener('DOMContentLoaded', () => {
